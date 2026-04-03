@@ -1,0 +1,366 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" font-family="Arial, sans-serif">
+  <defs>
+    <linearGradient id="alu" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c0c0c0"/>
+      <stop offset="50%" style="stop-color:#d8d8d8"/>
+      <stop offset="100%" style="stop-color:#a8a8a8"/>
+    </linearGradient>
+    <linearGradient id="wheel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </linearGradient>
+    <linearGradient id="tpu" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#444"/>
+      <stop offset="100%" style="stop-color:#333"/>
+    </linearGradient>
+    <linearGradient id="pcb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a8a1a"/>
+      <stop offset="100%" style="stop-color:#0d6b0d"/>
+    </linearGradient>
+    <linearGradient id="capot" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a90d9;stop-opacity:0.85"/>
+      <stop offset="100%" style="stop-color:#2a5a99;stop-opacity:0.9"/>
+    </linearGradient>
+    <linearGradient id="brush" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8B4513"/>
+      <stop offset="100%" style="stop-color:#A0522D"/>
+    </linearGradient>
+    <linearGradient id="pave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#888"/>
+      <stop offset="50%" style="stop-color:#999"/>
+      <stop offset="100%" style="stop-color:#777"/>
+    </linearGradient>
+    <linearGradient id="mousse" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a8c3f"/>
+      <stop offset="100%" style="stop-color:#2d6b24"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.25"/>
+    </filter>
+    <filter id="shadow-sm" x="-5%" y="-5%" width="115%" height="115%">
+      <feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="720" fill="#f5f0eb"/>
+
+  <!-- Title -->
+  <text x="450" y="42" text-anchor="middle" font-size="28" font-weight="bold" fill="#2c3e50">FORCAIR</text>
+  <text x="450" y="65" text-anchor="middle" font-size="14" fill="#7f8c8d">Robot Desherbeur Autonome - Design v1</text>
+  <text x="450" y="82" text-anchor="middle" font-size="11" fill="#95a5a6" font-style="italic">Lightning League DIY - Jayce et les Conquerants de la Lumiere</text>
+
+  <!-- ==================== VUE ISOMETRIQUE (gauche) ==================== -->
+  <text x="250" y="115" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c3e50">Vue d'ensemble</text>
+
+  <!-- Sol / Pavés -->
+  <g transform="translate(80, 480)">
+    <!-- Rangée de pavés -->
+    <rect x="0" y="0" width="75" height="55" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <rect x="78" y="0" width="75" height="55" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <rect x="156" y="0" width="75" height="55" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <rect x="234" y="0" width="75" height="55" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <rect x="312" y="0" width="75" height="55" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <!-- Mousse dans les joints -->
+    <rect x="75" y="0" width="3" height="55" fill="url(#mousse)" rx="1"/>
+    <rect x="153" y="0" width="3" height="55" fill="url(#mousse)" rx="1"/>
+    <rect x="231" y="0" width="3" height="55" fill="url(#mousse)" rx="1"/>
+    <rect x="309" y="0" width="3" height="55" fill="url(#mousse)" rx="1"/>
+  </g>
+
+  <!-- Robot body -->
+  <g filter="url(#shadow)" transform="translate(105, 250)">
+
+    <!-- Profilé arrière -->
+    <rect x="0" y="140" width="280" height="16" rx="2" fill="url(#alu)" stroke="#999" stroke-width="1"/>
+    <!-- rainure -->
+    <line x1="5" y1="148" x2="275" y2="148" stroke="#aaa" stroke-width="0.8"/>
+
+    <!-- Profilé gauche -->
+    <rect x="0" y="0" width="16" height="156" rx="2" fill="url(#alu)" stroke="#999" stroke-width="1"/>
+    <line x1="8" y1="5" x2="8" y2="151" stroke="#aaa" stroke-width="0.8"/>
+
+    <!-- Profilé droit -->
+    <rect x="264" y="0" width="16" height="156" rx="2" fill="url(#alu)" stroke="#999" stroke-width="1"/>
+    <line x1="272" y1="5" x2="272" y2="151" stroke="#aaa" stroke-width="0.8"/>
+
+    <!-- Profilé avant -->
+    <rect x="0" y="0" width="280" height="16" rx="2" fill="url(#alu)" stroke="#999" stroke-width="1"/>
+    <line x1="5" y1="8" x2="275" y2="8" stroke="#aaa" stroke-width="0.8"/>
+
+    <!-- Équerres (coins) -->
+    <rect x="1" y="1" width="18" height="18" rx="1" fill="#b0b0b0" stroke="#888" stroke-width="0.5"/>
+    <rect x="261" y="1" width="18" height="18" rx="1" fill="#b0b0b0" stroke="#888" stroke-width="0.5"/>
+    <rect x="1" y="137" width="18" height="18" rx="1" fill="#b0b0b0" stroke="#888" stroke-width="0.5"/>
+    <rect x="261" y="137" width="18" height="18" rx="1" fill="#b0b0b0" stroke="#888" stroke-width="0.5"/>
+
+    <!-- Plateau (contreplaqué) -->
+    <rect x="18" y="18" width="244" height="120" rx="3" fill="#d4a76a" stroke="#b8935a" stroke-width="1" opacity="0.9"/>
+    <!-- grain bois -->
+    <line x1="25" y1="30" x2="255" y2="30" stroke="#c49a60" stroke-width="0.4" opacity="0.5"/>
+    <line x1="25" y1="55" x2="255" y2="55" stroke="#c49a60" stroke-width="0.4" opacity="0.5"/>
+    <line x1="25" y1="80" x2="255" y2="80" stroke="#c49a60" stroke-width="0.4" opacity="0.5"/>
+    <line x1="25" y1="105" x2="255" y2="105" stroke="#c49a60" stroke-width="0.4" opacity="0.5"/>
+
+    <!-- Capot électronique (PETG translucide) -->
+    <rect x="30" y="25" width="220" height="65" rx="8" fill="url(#capot)" stroke="#3a7abd" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <!-- Ventilation -->
+    <line x1="210" y1="35" x2="235" y2="35" stroke="#5a9ad9" stroke-width="1.5" opacity="0.6"/>
+    <line x1="210" y1="40" x2="235" y2="40" stroke="#5a9ad9" stroke-width="1.5" opacity="0.6"/>
+    <line x1="210" y1="45" x2="235" y2="45" stroke="#5a9ad9" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- ESP32-CAM -->
+    <rect x="40" y="35" width="30" height="22" rx="2" fill="url(#pcb)" stroke="#0a5a0a" stroke-width="1" filter="url(#shadow-sm)"/>
+    <rect x="47" y="38" width="16" height="12" rx="1" fill="#111" stroke="#333" stroke-width="0.5"/>
+    <circle cx="55" cy="44" r="4" fill="#222" stroke="#555" stroke-width="0.5"/>
+    <text x="55" y="68" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">ESP32-CAM</text>
+
+    <!-- RPi Zero 2W -->
+    <rect x="85" y="35" width="48" height="22" rx="2" fill="url(#pcb)" stroke="#0a5a0a" stroke-width="1" filter="url(#shadow-sm)"/>
+    <rect x="90" y="39" width="12" height="12" rx="1" fill="#c0c0c0" stroke="#999" stroke-width="0.5"/>
+    <rect x="106" y="40" width="8" height="5" rx="1" fill="#333"/>
+    <rect x="118" y="40" width="8" height="5" rx="1" fill="#333"/>
+    <text x="109" y="68" text-anchor="middle" font-size="7" fill="#fff" font-weight="bold">RPi Zero 2W</text>
+
+    <!-- Batterie 3S -->
+    <rect x="148" y="32" width="50" height="28" rx="4" fill="#2c3e50" stroke="#1a252f" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <text x="173" y="49" text-anchor="middle" font-size="9" fill="#ecf0f1" font-weight="bold">3S LiPo</text>
+    <text x="173" y="68" text-anchor="middle" font-size="7" fill="#fff">11.1V</text>
+
+    <!-- Motor driver L298N -->
+    <rect x="40" y="95" width="35" height="30" rx="2" fill="#c0392b" stroke="#922b21" stroke-width="1" filter="url(#shadow-sm)"/>
+    <rect x="45" y="98" width="8" height="12" rx="1" fill="#333"/>
+    <rect x="55" y="98" width="8" height="12" rx="1" fill="#333"/>
+    <text x="57" y="120" text-anchor="middle" font-size="6" fill="#fff" font-weight="bold">L298N</text>
+
+    <!-- Moteur brosse + brosse -->
+    <rect x="100" y="95" width="80" height="30" rx="3" fill="#555" stroke="#444" stroke-width="1" filter="url(#shadow-sm)"/>
+    <text x="140" y="113" text-anchor="middle" font-size="8" fill="#ddd" font-weight="bold">Moteur brosse</text>
+    <text x="140" y="122" text-anchor="middle" font-size="6" fill="#aaa">Telsa 80 - 12.6V</text>
+
+    <!-- GoPro mount -->
+    <rect x="210" y="95" width="35" height="25" rx="3" fill="#333" stroke="#222" stroke-width="1" filter="url(#shadow-sm)"/>
+    <rect x="218" y="99" width="18" height="13" rx="2" fill="#444" stroke="#555" stroke-width="0.5"/>
+    <circle cx="227" cy="105" r="4" fill="#222" stroke="#666" stroke-width="0.5"/>
+    <text x="227" y="130" text-anchor="middle" font-size="6" fill="#666">GoPro</text>
+
+  </g>
+
+  <!-- Roues -->
+  <!-- Roue AV-G -->
+  <g transform="translate(85, 260)">
+    <ellipse cx="0" cy="18" rx="14" ry="28" fill="url(#tpu)" stroke="#222" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <ellipse cx="0" cy="18" rx="8" ry="20" fill="#555" stroke="#444" stroke-width="0.5"/>
+    <ellipse cx="0" cy="18" rx="4" ry="10" fill="#888"/>
+    <!-- stries -->
+    <line x1="-14" y1="5" x2="-8" y2="5" stroke="#555" stroke-width="1"/>
+    <line x1="-14" y1="15" x2="-8" y2="15" stroke="#555" stroke-width="1"/>
+    <line x1="-14" y1="25" x2="-8" y2="25" stroke="#555" stroke-width="1"/>
+    <line x1="-14" y1="35" x2="-8" y2="35" stroke="#555" stroke-width="1"/>
+  </g>
+
+  <!-- Roue AV-D -->
+  <g transform="translate(405, 260)">
+    <ellipse cx="0" cy="18" rx="14" ry="28" fill="url(#tpu)" stroke="#222" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <ellipse cx="0" cy="18" rx="8" ry="20" fill="#555" stroke="#444" stroke-width="0.5"/>
+    <ellipse cx="0" cy="18" rx="4" ry="10" fill="#888"/>
+    <line x1="8" y1="5" x2="14" y2="5" stroke="#555" stroke-width="1"/>
+    <line x1="8" y1="15" x2="14" y2="15" stroke="#555" stroke-width="1"/>
+    <line x1="8" y1="25" x2="14" y2="25" stroke="#555" stroke-width="1"/>
+    <line x1="8" y1="35" x2="14" y2="35" stroke="#555" stroke-width="1"/>
+  </g>
+
+  <!-- Roue AR-G -->
+  <g transform="translate(85, 390)">
+    <ellipse cx="0" cy="18" rx="14" ry="28" fill="url(#tpu)" stroke="#222" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <ellipse cx="0" cy="18" rx="8" ry="20" fill="#555" stroke="#444" stroke-width="0.5"/>
+    <ellipse cx="0" cy="18" rx="4" ry="10" fill="#888"/>
+    <line x1="-14" y1="5" x2="-8" y2="5" stroke="#555" stroke-width="1"/>
+    <line x1="-14" y1="15" x2="-8" y2="15" stroke="#555" stroke-width="1"/>
+    <line x1="-14" y1="25" x2="-8" y2="25" stroke="#555" stroke-width="1"/>
+    <line x1="-14" y1="35" x2="-8" y2="35" stroke="#555" stroke-width="1"/>
+  </g>
+
+  <!-- Roue AR-D -->
+  <g transform="translate(405, 390)">
+    <ellipse cx="0" cy="18" rx="14" ry="28" fill="url(#tpu)" stroke="#222" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <ellipse cx="0" cy="18" rx="8" ry="20" fill="#555" stroke="#444" stroke-width="0.5"/>
+    <ellipse cx="0" cy="18" rx="4" ry="10" fill="#888"/>
+    <line x1="8" y1="5" x2="14" y2="5" stroke="#555" stroke-width="1"/>
+    <line x1="8" y1="15" x2="14" y2="15" stroke="#555" stroke-width="1"/>
+    <line x1="8" y1="25" x2="14" y2="25" stroke="#555" stroke-width="1"/>
+    <line x1="8" y1="35" x2="14" y2="35" stroke="#555" stroke-width="1"/>
+  </g>
+
+  <!-- Brosse (sous le robot) -->
+  <g transform="translate(195, 460)">
+    <rect x="0" y="0" width="90" height="14" rx="7" fill="url(#brush)" stroke="#6B3410" stroke-width="1" filter="url(#shadow-sm)"/>
+    <!-- poils -->
+    <line x1="10" y1="14" x2="8" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="18" y1="14" x2="16" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="26" y1="14" x2="24" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="34" y1="14" x2="32" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="42" y1="14" x2="40" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="50" y1="14" x2="48" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="58" y1="14" x2="56" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="66" y1="14" x2="64" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="74" y1="14" x2="72" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <line x1="82" y1="14" x2="80" y2="22" stroke="#8B6914" stroke-width="1.2"/>
+    <!-- Tige descente -->
+    <line x1="45" y1="0" x2="45" y2="-15" stroke="#999" stroke-width="2.5"/>
+  </g>
+
+  <!-- Labels vue ensemble -->
+  <g font-size="9" fill="#555">
+    <text x="60" y="283" text-anchor="end">Roues TPU</text>
+    <text x="60" y="295" text-anchor="end" font-size="7" fill="#888">80mm, grip strie</text>
+
+    <line x1="195" y1="455" x2="195" y2="470" stroke="#aaa" stroke-width="0.5" stroke-dasharray="3,2"/>
+    <line x1="285" y1="455" x2="285" y2="470" stroke="#aaa" stroke-width="0.5" stroke-dasharray="3,2"/>
+    <text x="240" y="500" text-anchor="middle" font-size="9" fill="#8B4513" font-weight="bold">Brosse nylon</text>
+    <text x="240" y="510" text-anchor="middle" font-size="7" fill="#888">montee/descente axe Z</text>
+  </g>
+
+  <!-- ==================== VUE DE COTE (droite) ==================== -->
+  <text x="680" y="115" text-anchor="middle" font-size="16" font-weight="bold" fill="#2c3e50">Vue de cote</text>
+
+  <g transform="translate(530, 140)">
+    <!-- Profilé gauche (côté) -->
+    <rect x="20" y="80" width="260" height="14" rx="2" fill="url(#alu)" stroke="#999" stroke-width="1"/>
+    <line x1="25" y1="87" x2="275" y2="87" stroke="#aaa" stroke-width="0.6"/>
+
+    <!-- Plateau -->
+    <rect x="30" y="70" width="240" height="10" rx="1" fill="#d4a76a" stroke="#b8935a" stroke-width="0.8"/>
+
+    <!-- Capot -->
+    <path d="M 40,70 L 40,40 Q 40,30 50,30 L 250,30 Q 260,30 260,40 L 260,70" fill="url(#capot)" stroke="#3a7abd" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <!-- Composants visibles sous capot -->
+    <rect x="55" y="42" width="25" height="18" rx="2" fill="url(#pcb)" stroke="#0a5a0a" stroke-width="0.8"/>
+    <text x="67" y="54" text-anchor="middle" font-size="6" fill="#fff">ESP32</text>
+    <rect x="90" y="42" width="35" height="18" rx="2" fill="url(#pcb)" stroke="#0a5a0a" stroke-width="0.8"/>
+    <text x="107" y="54" text-anchor="middle" font-size="6" fill="#fff">RPi</text>
+    <rect x="135" y="40" width="40" height="22" rx="3" fill="#2c3e50" stroke="#1a252f" stroke-width="1"/>
+    <text x="155" y="54" text-anchor="middle" font-size="7" fill="#ecf0f1">3S</text>
+    <rect x="185" y="42" width="28" height="18" rx="2" fill="#c0392b" stroke="#922b21" stroke-width="0.8"/>
+    <text x="199" y="54" text-anchor="middle" font-size="5" fill="#fff">L298N</text>
+
+    <!-- Moteur brosse (sous plateau) -->
+    <rect x="110" y="94" width="60" height="25" rx="3" fill="#555" stroke="#444" stroke-width="1"/>
+    <text x="140" y="110" text-anchor="middle" font-size="7" fill="#ddd">Moteur</text>
+
+    <!-- Tiges Z -->
+    <line x1="115" y1="119" x2="115" y2="160" stroke="#bbb" stroke-width="3"/>
+    <line x1="165" y1="119" x2="165" y2="160" stroke="#bbb" stroke-width="3"/>
+
+    <!-- Chariot Z -->
+    <rect x="108" y="145" width="64" height="12" rx="2" fill="#666" stroke="#555" stroke-width="1"/>
+
+    <!-- Brosse -->
+    <ellipse cx="140" cy="165" rx="30" ry="8" fill="url(#brush)" stroke="#6B3410" stroke-width="1"/>
+    <!-- Poils brosse -->
+    <line x1="115" y1="170" x2="113" y2="182" stroke="#8B6914" stroke-width="1"/>
+    <line x1="125" y1="172" x2="123" y2="184" stroke="#8B6914" stroke-width="1"/>
+    <line x1="135" y1="173" x2="133" y2="185" stroke="#8B6914" stroke-width="1"/>
+    <line x1="145" y1="173" x2="143" y2="185" stroke="#8B6914" stroke-width="1"/>
+    <line x1="155" y1="172" x2="153" y2="184" stroke="#8B6914" stroke-width="1"/>
+    <line x1="165" y1="170" x2="163" y2="182" stroke="#8B6914" stroke-width="1"/>
+
+    <!-- Roue avant -->
+    <circle cx="35" cy="115" r="28" fill="url(#tpu)" stroke="#222" stroke-width="2"/>
+    <circle cx="35" cy="115" r="18" fill="#555" stroke="#444" stroke-width="1"/>
+    <circle cx="35" cy="115" r="8" fill="#888" stroke="#999" stroke-width="0.5"/>
+    <circle cx="35" cy="115" r="3" fill="#bbb"/>
+
+    <!-- Roue arrière -->
+    <circle cx="265" cy="115" r="28" fill="url(#tpu)" stroke="#222" stroke-width="2"/>
+    <circle cx="265" cy="115" r="18" fill="#555" stroke="#444" stroke-width="1"/>
+    <circle cx="265" cy="115" r="8" fill="#888" stroke="#999" stroke-width="0.5"/>
+    <circle cx="265" cy="115" r="3" fill="#bbb"/>
+
+    <!-- Sol pavés -->
+    <rect x="0" y="143" width="80" height="45" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <rect x="83" y="143" width="80" height="45" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <rect x="166" y="143" width="80" height="45" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <rect x="249" y="143" width="80" height="45" rx="2" fill="url(#pave)" stroke="#666" stroke-width="0.5"/>
+    <!-- Mousse -->
+    <rect x="80" y="143" width="3" height="45" fill="url(#mousse)" rx="1"/>
+    <rect x="163" y="143" width="3" height="45" fill="url(#mousse)" rx="1"/>
+    <rect x="246" y="143" width="3" height="45" fill="url(#mousse)" rx="1"/>
+
+    <!-- Cotes -->
+    <line x1="5" y1="25" x2="5" y2="143" stroke="#e74c3c" stroke-width="0.8" stroke-dasharray="4,2"/>
+    <text x="2" y="85" text-anchor="end" font-size="8" fill="#e74c3c" transform="rotate(-90, 2, 85)">100mm</text>
+
+    <line x1="20" y1="200" x2="280" y2="200" stroke="#e74c3c" stroke-width="0.8" stroke-dasharray="4,2"/>
+    <text x="150" y="212" text-anchor="middle" font-size="8" fill="#e74c3c">300mm</text>
+
+    <!-- Labels -->
+    <line x1="280" y1="50" x2="310" y2="35" stroke="#888" stroke-width="0.5"/>
+    <text x="312" y="38" font-size="8" fill="#555">Capot PETG</text>
+    <text x="312" y="48" font-size="7" fill="#888">waterproof</text>
+
+    <line x1="170" y1="87" x2="310" y2="72" stroke="#888" stroke-width="0.5"/>
+    <text x="312" y="75" font-size="8" fill="#555">Profile alu 2020</text>
+
+    <line x1="170" y1="158" x2="310" y2="118" stroke="#888" stroke-width="0.5"/>
+    <text x="312" y="115" font-size="8" fill="#555">Axe Z lineaire</text>
+    <text x="312" y="125" font-size="7" fill="#888">tiges recup imprimante</text>
+
+    <line x1="140" y1="175" x2="310" y2="145" stroke="#888" stroke-width="0.5"/>
+    <text x="312" y="142" font-size="8" fill="#8B4513" font-weight="bold">Brosse rotative</text>
+    <text x="312" y="152" font-size="7" fill="#888">nettoyage joints</text>
+  </g>
+
+  <!-- ==================== SPECS BOX ==================== -->
+  <g transform="translate(500, 410)">
+    <rect x="0" y="0" width="370" height="280" rx="12" fill="#fff" stroke="#ddd" stroke-width="1.5" filter="url(#shadow)"/>
+
+    <text x="185" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#2c3e50">Specifications</text>
+    <line x1="20" y1="38" x2="350" y2="38" stroke="#eee" stroke-width="1"/>
+
+    <text x="30" y="60" font-size="11" fill="#2c3e50" font-weight="bold">Chassis</text>
+    <text x="30" y="76" font-size="10" fill="#555">300 x 250 x 100 mm</text>
+    <text x="30" y="90" font-size="10" fill="#555">Profiles alu 2020 (Motedis)</text>
+    <text x="30" y="104" font-size="10" fill="#555">Plateau contreplaque 5mm</text>
+
+    <text x="30" y="126" font-size="11" fill="#2c3e50" font-weight="bold">Traction</text>
+    <text x="30" y="142" font-size="10" fill="#555">4WD - Moteurs DC recup</text>
+    <text x="30" y="156" font-size="10" fill="#555">Roues 80mm (PETG + TPU)</text>
+
+    <text x="200" y="60" font-size="11" fill="#2c3e50" font-weight="bold">Electronique</text>
+    <text x="200" y="76" font-size="10" fill="#555">ESP32-CAM (controle + camera)</text>
+    <text x="200" y="90" font-size="10" fill="#555">RPi Zero 2W (vision IA)</text>
+    <text x="200" y="104" font-size="10" fill="#555">GoPro Hero 3+ (cartographie)</text>
+
+    <text x="200" y="126" font-size="11" fill="#2c3e50" font-weight="bold">Actionneur</text>
+    <text x="200" y="142" font-size="10" fill="#555">Brosse nylon rotative</text>
+    <text x="200" y="156" font-size="10" fill="#555">Moteur Telsa 80 (12.6V)</text>
+
+    <line x1="20" y1="168" x2="350" y2="168" stroke="#eee" stroke-width="1"/>
+
+    <text x="30" y="190" font-size="11" fill="#2c3e50" font-weight="bold">Poids</text>
+    <text x="100" y="190" font-size="11" fill="#555">~1.4 kg</text>
+
+    <text x="200" y="190" font-size="11" fill="#2c3e50" font-weight="bold">Autonomie</text>
+    <text x="280" y="190" font-size="11" fill="#555">~1h (3S LiPo)</text>
+
+    <text x="30" y="212" font-size="11" fill="#2c3e50" font-weight="bold">Cout</text>
+    <text x="100" y="212" font-size="11" fill="#27ae60" font-weight="bold">~75 EUR</text>
+    <text x="160" y="212" font-size="9" fill="#888">(+ recup + impression 3D)</text>
+
+    <text x="30" y="234" font-size="11" fill="#2c3e50" font-weight="bold">Temps</text>
+    <text x="100" y="234" font-size="11" fill="#555">~9h (2-3 week-ends)</text>
+
+    <line x1="20" y1="248" x2="350" y2="248" stroke="#eee" stroke-width="1"/>
+    <text x="185" y="270" text-anchor="middle" font-size="10" fill="#95a5a6" font-style="italic">100% recup + impression 3D + profiles alu standard</text>
+  </g>
+
+  <!-- Wifi waves -->
+  <g transform="translate(310, 240)" opacity="0.5">
+    <path d="M 0,0 Q 10,-10 20,0" fill="none" stroke="#3498db" stroke-width="1.5"/>
+    <path d="M -5,5 Q 10,-15 25,5" fill="none" stroke="#3498db" stroke-width="1.2"/>
+    <path d="M -10,10 Q 10,-20 30,10" fill="none" stroke="#3498db" stroke-width="0.8"/>
+    <text x="10" y="25" text-anchor="middle" font-size="7" fill="#3498db">WiFi</text>
+  </g>
+
+</svg>
