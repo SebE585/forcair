@@ -68,6 +68,8 @@ The robot patrols your patio autonomously. When the camera detects green moss (c
 
 ### Bill of Materials (BOM)
 
+> **Source all parts in one click:** [**Open BOM on Sourcier**](https://sourcier.shop/bom/forcair) — find validated AliExpress vendors for each component.
+
 | Part | Source | Cost |
 |------|--------|------|
 | 4x 2020 profiles (300+250mm) | Motedis or similar | ~8 EUR |
