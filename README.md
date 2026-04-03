@@ -1,9 +1,8 @@
 # Forcair
 
-**The open-source robot that cleans your patio while you relax.**
+![Forcair Banner](docs/branding/banner.png)
 
-<!-- TODO: replace with generated banner image -->
-<!-- ![Forcair Banner](docs/branding/banner.png) -->
+**The open-source robot that cleans your patio while you relax.**
 
 Forcair is a low-cost, open-source autonomous robot that removes moss and weeds from paved surfaces using a rotating brush and computer vision.
 
