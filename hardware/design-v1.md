@@ -101,7 +101,7 @@ Donnees extraites des photos (`specs/photos/`) :
 | Type dalles (allee) | Carrees ~30x30cm, joints ~8mm | Surface plus reguliere |
 | Mousse | Dans les joints, epaisseur 2-5mm | Brosse doit atteindre le fond du joint |
 | Denivele joints | 3-8mm entre paves | Suspension ou roues souples |
-| Surface totale | ~30m2 terrasse + ~10m2 allee | Autonomie batterie ~1h min |
+| Surface totale | **~150m2** (terrasse + allees + abords piscine) | Navigation par zones ou systematique necessaire |
 | Environnement | Exterieur, humidite, soleil | Electronique protegee |
 | Obstacles | Bordures pierre, pieds de table, mur | Detection ou bumper |
 
@@ -514,32 +514,63 @@ La brosse doit pouvoir :
 | Capteurs | ESP32 GPIO | IR distance + bumpers → evitement reactif |
 | Monitoring | ESP32 ADC | Tension batterie → bip si faible |
 
-### 7.2 Phase 1.5 - Nettoyeur semi-autonome (bump & turn)
+### 7.2 Phase 1.5 - Nettoyeur semi-autonome (bump & turn par zones)
 
-> **Nouveau v1.1** : phase intermediaire inspiree de Tertill. Le robot patrouille
+> **v1.1** : phase intermediaire inspiree de Tertill. Le robot patrouille
 > seul en mode "random walk" et brosse quand il detecte du vert.
+>
+> **v1.2** : surface corrigee a ~150m2. Le bump & turn seul ne couvre pas
+> 150m2 en une charge (~1h15). Solution : **decoupe en zones manuelles**.
+> L'utilisateur pose le robot dans une zone de ~30m2, le robot nettoie
+> en bump & turn, puis l'utilisateur le deplace a la zone suivante.
+> 5 zones x 30min = 150m2 en une journee (avec recharges).
 
 | Module | Plateforme | Fonction |
 |--------|-----------|----------|
-| Navigation | ESP32 | **Bump & turn** (Tertill) : avancer, tourner sur obstacle. Couverture aleatoire. |
+| Navigation | ESP32 | **Bump & turn** (Tertill) : avancer, tourner sur obstacle. Couverture aleatoire par zone. |
 | Detection mousse | ESP32-CAM | HSV vert-sur-gris → brosse ON si vert detecte |
 | Controle Z | ESP32 | Servo descente brosse |
 | Evitement obstacles | ESP32 | IR Sharp (anticipation) + bumpers (contact) |
 | Securite | ESP32 | Monitoring batterie, arret si < 9.6V, tilt detection (MPU6050 optionnel) |
 
-> **Pourquoi bump & turn** : Tertill a prouve que la couverture aleatoire suffit pour
-> des surfaces < 50m2, et c'est infiniment plus simple qu'un SLAM. Notre terrasse = 30m2.
-> En 1h de random walk, le robot couvre statistiquement >95% de la surface (ref. Tertill).
+> **Limitation connue** : le bump & turn couvre ~95% d'une zone de 30m2 en ~45min.
+> Pour 150m2 complets, il faut repositionner le robot manuellement entre les zones.
+> C'est la raison principale de l'evolution vers la Phase 2 (navigation systematique).
 
-### 7.3 Phase 2 - Nettoyeur autonome intelligent
+### 7.3 Phase 2 - Navigation systematique (dead reckoning)
+
+> A 150m2, le robot doit couvrir la surface methodiquement sans intervention humaine.
+> Le dead reckoning (IMU + odometrie roues) permet un balayage en lignes paralleles.
+> La derive est corrigee par recalage sur les murs/bordures (bumpers = reference connue).
 
 | Module | Plateforme | Fonction |
 |--------|-----------|----------|
-| Navigation | ESP32 + **RPi Zero 2W** | Balayage systematique OU suivi de joints par vision (R12) |
+| Navigation | ESP32 + **MPU6050** | Balayage en lignes paralleles, heading gyroscope, recalage bumpers |
+| Odometrie | ESP32 | Comptage tours roues (encodeurs ou estimation temporelle) |
+| Detection mousse | ESP32-CAM | HSV vert-sur-gris → brosse ON si vert detecte |
+| Suivi de joints | ESP32-CAM | Detection lignes joints par vision (R12) → brossage cible |
+| Securite | ESP32 + MPU6050 | Blocage, retournement, inclinaison excessive |
+
+> **Cout supplementaire** : +2 EUR (MPU6050 sur AliExpress). Deja prevu en optionnel v1.1.
+
+### 7.4 Phase 3 - Navigation RTK (precision centimetrique)
+
+> Pour une couverture optimale de 150m2 sans intervention humaine, le GPS RTK
+> offre une precision de ~2cm. Le reseau NTRIP francais (RGP, IGN) fournit
+> les corrections gratuitement — pas besoin de base station.
+> C'est la meme techno que le robot tondeuse Ecovacs Goat 800 RTK.
+
+| Module | Plateforme | Fonction |
+|--------|-----------|----------|
+| Positionnement | **u-blox F9P** + antenne patch | GPS RTK via NTRIP (RGP IGN), precision ~2cm |
+| Navigation | RPi Zero 2W | Planification de chemin, couverture systematique, zones exclues |
+| Cartographie | RPi + GPS RTK | Carte de couverture, heatmap mousse, historique passages |
 | Detection avancee | RPi + OWL | ML : classification mousse/herbe/lichen, segmentation |
-| Cartographie | RPi + GPS NEO-6M | Heatmap zones mousse, log des passages |
 | Verification | RPi + camera | Photo avant/apres passage, score de nettoyage |
-| Coordination | RPi WiFi | Mode multi-robot si 2+ Forcair (futur lointain) |
+
+> **Cout supplementaire** : ~40 EUR (F9P ~35 EUR + antenne ~5 EUR sur AliExpress).
+> NTRIP gratuit en France. Pas de base station, pas de fil perimetrique.
+> A ce stade, Forcair passe de prototype DIY a **vrai produit reproductible**.
 
 ## 8. Ce que nous n'avions pas anticipe (v1.1)
 

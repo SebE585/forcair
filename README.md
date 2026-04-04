@@ -30,10 +30,10 @@ Interlocking pavers and stone patios accumulate **moss and weeds** in their join
 
 ```
   1. DETECT            2. NAVIGATE           3. CLEAN
-  ESP32-CAM sees      Bump & turn on        Rotating brush
-  green moss on       paved surface         scrubs joints
-  gray pavers         (Tertill-style)       automatically
-  (HSV threshold)     (~30m2 coverage)      (nylon or steel)
+  ESP32-CAM sees      Bump & turn or        Rotating brush
+  green moss on       systematic sweep      scrubs joints
+  gray pavers         (~150m2 coverage)     automatically
+  (HSV threshold)     (IMU → RTK roadmap)   (nylon or steel)
 ```
 
 The robot patrols your patio autonomously. When the camera detects green moss (computer vision, no cloud), it lowers a rotating brush and scrubs the joint clean. Simple, mechanical, effective.
@@ -50,7 +50,7 @@ The robot patrols your patio autonomously. When the camera detects green moss (c
 | Motor driver | TB6612FNG (dual H-bridge, MOSFET) |
 | Brush | Rotary nylon or steel wire, 50mm, on Z-axis |
 | Battery | 3S 18650 pack (11.1V), ~1h15 autonomy |
-| Navigation | Bump & turn + IR obstacle + cliff sensors |
+| Navigation | Bump & turn (Phase 1) → IMU dead reckoning (Phase 2) → GPS RTK (Phase 3) |
 | Detection | HSV green-on-gray thresholding (inspired by [OWL](https://github.com/geezacoleman/OpenWeedLocator)) |
 | Manufacturing | 3D printing (Bambu Lab X1C) + off-the-shelf parts |
 | **Total cost** | **~75 EUR** (including shared hardware order) |
@@ -61,8 +61,9 @@ The robot patrols your patio autonomously. When the camera detects green moss (c
 |-------|--------|-------------|
 | **Phase 0** | **In progress** | Manual brush testing (drill + brush on pavers) |
 | Phase 1 | Planned | Wheeled base + ESP32-CAM scout + remote control |
-| Phase 1.5 | Planned | Autonomous bump & turn + brush on detected moss |
-| Phase 2 | Future | RPi Zero 2W + SLAM + GPS logging + smart navigation |
+| Phase 1.5 | Planned | Bump & turn by zones (~30m² per session) |
+| Phase 2 | Future | Systematic sweep with IMU dead reckoning (MPU6050) for 150m² |
+| Phase 3 | Future | GPS RTK (u-blox F9P + NTRIP) for full autonomous coverage |
 
 ## Build Your Own
 
@@ -165,7 +166,7 @@ Design your own module! The IMS plate CAD file is in `hardware/cad/ims_plate.py`
 ## Architecture
 
 ```
-Phase 1-1.5 (ESP32-CAM only):
+Phase 1-1.5 (ESP32-CAM only, ~75 EUR):
 
   ┌─────────────┐    WiFi     ┌──────────────┐
   │  ESP32-CAM  │◄───────────►│   Smartphone  │
@@ -176,6 +177,9 @@ Phase 1-1.5 (ESP32-CAM only):
      │   │  └──── 2x IR Sharp + 2x bumper + 2x cliff + buzzer
      │   └─────── SG90 servo (Z-axis)
      └─────────── TB6612FNG → 4x DC motors + brush motor (MOSFET)
+
+Phase 2 (+2 EUR): add MPU6050 IMU → systematic line sweep, 150m² coverage
+Phase 3 (+40 EUR): add u-blox F9P → GPS RTK via NTRIP, cm-level precision
 ```
 
 ## Contributing

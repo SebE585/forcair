@@ -7,7 +7,7 @@ Base roulante commune + modules outils interchangeables (brosse, camera, spray..
 
 ## Contexte
 
-- Terrain : paves autobloquants (terrasse ~30m2) + dalles carrees (allee piscine)
+- Terrain : paves autobloquants + dalles carrees (~150m2 total, comparable a la surface pelouse)
 - Probleme : mousse verte dans les joints, mauvaises herbes
 - Robot tondeuse existant : Ecovacs Goat 800 RTK (pelouse OK, pas les paves)
 - Fabrication : chassis profiles alu 2020 (Motedis) + pieces imprimees 3D (Bambu Lab X1 Carbon)
