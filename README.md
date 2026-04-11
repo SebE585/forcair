@@ -28,15 +28,13 @@ Interlocking pavers and stone patios accumulate **moss and weeds** in their join
 
 ## How It Works
 
-```
-  1. DETECT            2. NAVIGATE           3. CLEAN
-  ESP32-CAM sees      Bump & turn or        Rotating brush
-  green moss on       systematic sweep      scrubs joints
-  gray pavers         (~150m2 coverage)     automatically
-  (HSV threshold)     (IMU → RTK roadmap)   (nylon or steel)
-```
+| Step | What | How |
+|---|---|---|
+| **1. Detect** | ESP32-CAM sees green moss on gray pavers | HSV color thresholding (no cloud, on-device) |
+| **2. Navigate** | Bump & turn — or systematic sweep on ~150 m² | Phase 1.5 reactive → Phase 2 IMU dead reckoning → Phase 3 GPS RTK |
+| **3. Clean** | Rotating brush scrubs the joint | Nylon or steel wire, ~50 mm disc, drill-style attachment |
 
-The robot patrols your patio autonomously. When the camera detects green moss (computer vision, no cloud), it lowers a rotating brush and scrubs the joint clean. Simple, mechanical, effective.
+The robot patrols your patio autonomously. When the camera detects green moss, it lowers the rotating brush and scrubs the joint clean. Simple, mechanical, effective.
 
 ## Specifications
 
@@ -191,16 +189,17 @@ Key references:
 
 ## Modular Tool System (IMS)
 
-Forcair uses an **Interchangeable Module Standard** (IMS) interface:
+Forcair uses an **Interchangeable Module Standard** (IMS) interface — a single 100×80 mm plate
+with a fixed mechanical and electrical pinout. Modules clip on tool-free in ~30 seconds.
 
-```
-     ┌──── IMS Plate (100x80mm) ────┐
-     │  2x M5 butterfly bolts       │  ← tool-free swap in 30 seconds
-     │  2x centering posts (8mm)    │
-     │  XT60 connector (12V, 10A)   │
-     │  JST-XH 3-pin (PWM signal)  │
-     └──────────────────────────────┘
-```
+**IMS Plate spec** (100 × 80 mm):
+
+| Feature | Spec | Purpose |
+|---|---|---|
+| Fixation | 2× M5 butterfly bolts | Tool-free swap in ~30 s |
+| Alignment | 2× centering posts, ⌀ 8 mm | Repeatable positioning |
+| Power | XT60 connector | 12 V, 10 A continuous |
+| Signal | JST-XH 3-pin | PWM control + ground |
 
 | Module | Function | Status |
 |--------|----------|--------|
@@ -213,22 +212,30 @@ Design your own module! The IMS plate CAD file is in `hardware/cad/ims_plate.py`
 
 ## Architecture
 
-```
-Phase 1-1.5 (ESP32-CAM only, ~150 EUR from scratch / ~75 EUR with reclaimed parts):
+**Phase 1.5 — ESP32-CAM only** (~150 EUR from scratch / ~75 EUR with reclaimed parts):
 
-  ┌─────────────┐    WiFi     ┌──────────────┐
-  │  ESP32-CAM  │◄───────────►│   Smartphone  │
-  │  OV2640 cam │             │  (monitoring) │
-  │  HSV detect │             └──────────────┘
-  │  GPIO ctrl  │
-  └──┬───┬──┬───┘
-     │   │  └──── 2x IR Sharp + 2x bumper + 2x cliff + buzzer
-     │   └─────── SG90 servo (Z-axis)
-     └─────────── 2× L298N → 4× DC motors + IRLZ44N → brush motor
+```mermaid
+graph LR
+    Phone["📱 Smartphone<br/>(monitoring)"]
+    ESP["ESP32-CAM<br/>OV2640 + HSV detect<br/>GPIO control"]
 
-Phase 2 (+2 EUR): add MPU6050 IMU → systematic line sweep, 150m² coverage
-Phase 3 (+40 EUR): add u-blox F9P → GPS RTK via NTRIP, cm-level precision
+    Sensors["2× Sharp IR (front)<br/>2× TCRT5000 (cliff)<br/>2× microswitch (bumper)<br/>1× piezo buzzer"]
+    Servo["SG90 servo<br/>(Z-axis brush lift)"]
+    Traction["2× L298N H-bridge<br/>↓<br/>4× DC motors"]
+    Brush["IRLZ44N MOSFET<br/>↓<br/>12 V brush motor"]
+
+    Phone <-. WiFi .-> ESP
+    ESP --> Sensors
+    ESP --> Servo
+    ESP --> Traction
+    ESP --> Brush
 ```
+
+**Phase 2** (+2 EUR) — add an MPU6050 IMU for dead-reckoning navigation, enabling systematic
+line sweeps over ~150 m².
+
+**Phase 3** (+40 EUR) — add a u-blox F9P GPS-RTK receiver with NTRIP corrections for
+centimeter-level outdoor positioning and full coverage planning.
 
 ## Contributing
 
