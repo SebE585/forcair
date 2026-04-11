@@ -1,0 +1,290 @@
+# BOM.yaml — Forcair Phase 1.5
+# Open hardware autonomous paver weeding robot
+#
+# This file is consumed by sourcier.shop to auto-generate a BOM widget
+# with vendor links optimized per country. Spec: https://sourcier.shop/spec/bom-yaml
+#
+# Live widget : https://sourcier.shop/bom/SebE585/forcair
+
+project: forcair
+version: "1.5"
+description:
+  fr: Robot autonome de désherbage de pavés open hardware
+  en: Open hardware autonomous paver weeding robot
+url: https://github.com/SebE585/forcair
+license: CERN-OHL-S-2.0
+budget_target_eur: 75
+budget_realistic_eur: 150
+lifecycle: phase_1_achat
+
+items:
+  # ── Mécanique structure ─────────────────────────────────────────
+  - ref: profil-2020-300
+    sourcier_ref: MEC-033
+    name:
+      fr: Profil aluminium 2020 Type B 4 rainures cut 300mm
+      en: Aluminum profile 2020 Type B 4-slot cut 300mm
+    qty: 2
+    unit: pc
+    category: Mécanique - Profilé
+    notes:
+      fr: Custom cut Motedis (résolution mm). PAS le 2NVS.
+      en: Custom cut Motedis (mm resolution). NOT the 2NVS variant.
+
+  - ref: profil-2020-250
+    sourcier_ref: MEC-033
+    name:
+      fr: Profil aluminium 2020 Type B 4 rainures cut 250mm
+      en: Aluminum profile 2020 Type B 4-slot cut 250mm
+    qty: 2
+    unit: pc
+    category: Mécanique - Profilé
+
+  - ref: equerre-2020
+    sourcier_ref: MEC-031
+    name:
+      fr: Équerre 2020 B-type rainure 6
+      en: Corner bracket 2020 B-type slot 6
+    qty: 20
+    category: Mécanique - Fixation
+
+  - ref: tnut-m5
+    sourcier_ref: MEC-032
+    name:
+      fr: T-nut M5 rainure 6
+      en: M5 T-nut slot 6
+    qty: 20
+    category: Mécanique - Fixation
+
+  # ── Roues ───────────────────────────────────────────────────────
+  - ref: roulement-608zz
+    sourcier_ref: MEC-001
+    name:
+      fr: Roulement 608ZZ ABEC-7
+      en: 608ZZ ABEC-7 ball bearing
+    qty: 4
+    spec: 8x22x7mm
+    category: Mécanique - Roulements
+    notes:
+      fr: Pour les 4 hubs de roue
+      en: For the 4 wheel hubs
+
+  - ref: coupleur-5-8
+    sourcier_ref: MEC-010
+    name:
+      fr: Coupleur d'arbre rigide 5mm-8mm
+      en: Rigid shaft coupler 5mm-8mm
+    qty: 4
+    category: Mécanique - Coupleur
+    notes:
+      fr: Moteur traction → axe roue
+      en: Traction motor → wheel axle
+
+  - ref: collier-8mm
+    sourcier_ref: MEC-012
+    name:
+      fr: Collier d'arbre 8mm
+      en: 8mm shaft collar
+    qty: 8
+    category: Mécanique - Fixation
+
+  # ── Cerveau & driver ────────────────────────────────────────────
+  - ref: esp32-cam
+    sourcier_ref: ELE-002
+    name: ESP32-CAM OV2640
+    qty: 1
+    category: Cerveau
+    notes:
+      fr: Brain Phase 1 (vision + WiFi + GPIO)
+      en: Phase 1 brain (vision + WiFi + GPIO)
+
+  - ref: l298n
+    sourcier_ref: ELE-010
+    name:
+      fr: L298N pont H double
+      en: L298N dual H-bridge
+    qty: 2
+    category: Driver moteur
+    notes:
+      fr: 4 moteurs traction (2 canaux × 2 modules)
+      en: 4 traction motors (2 channels × 2 modules)
+
+  # ── Capteurs Phase 1.5 ──────────────────────────────────────────
+  - ref: sharp-ir
+    sourcier_ref: ELE-023
+    name:
+      fr: Sharp GP2Y0A21 capteur IR distance
+      en: Sharp GP2Y0A21 IR distance sensor
+    qty: 2
+    spec: 10-80cm analog
+    category: Capteurs Phase 1.5
+    notes:
+      fr: Détection obstacles avant
+      en: Front obstacle detection
+
+  - ref: tcrt5000
+    sourcier_ref: ELE-024
+    name: TCRT5000 cliff sensor module
+    qty: 2
+    category: Capteurs Phase 1.5
+    notes:
+      fr: Détection vide / escaliers sous chassis
+      en: Drop detection / stairs under chassis
+
+  - ref: microswitch-bumper
+    sourcier_ref: ELE-032
+    name:
+      fr: Micro-switch à levier snap-action
+      en: Snap-action lever microswitch
+    qty: 4
+    category: Capteurs Phase 1.5
+    notes:
+      fr: Bumpers avant + 2 spares
+      en: Front bumpers + 2 spares
+
+  - ref: buzzer-piezo
+    sourcier_ref: ELE-025
+    name:
+      fr: Buzzer piezo passif
+      en: Passive piezo buzzer
+    qty: 1
+    category: Capteurs Phase 1.5
+
+  # ── Capteur Phase 2 ─────────────────────────────────────────────
+  - ref: mpu6050
+    sourcier_ref: ELE-030
+    name: MPU6050 IMU GY-521
+    qty: 1
+    category: Capteurs Phase 2
+    notes:
+      fr: Dead reckoning Phase 2 (substituable par KS0170 du datalogger)
+      en: Phase 2 dead reckoning (substitutable with datalogger KS0170)
+
+  # ── Servo brosse ────────────────────────────────────────────────
+  - ref: sg90
+    sourcier_ref: ELE-021
+    name:
+      fr: SG90 micro servo 9g 180° with limit
+      en: SG90 9g micro servo 180° with limit
+    qty: 3
+    category: Servo
+    notes:
+      fr: Brosse Z-axis MOD-002 + spares (PAS variant 360° ni without limit)
+      en: Z-axis brush MOD-002 + spares (NOT the 360° or without-limit variant)
+
+  # ── Power chain ─────────────────────────────────────────────────
+  - ref: mosfet-irlz44n
+    sourcier_ref: ELE-026
+    name:
+      fr: MOSFET IRLZ44N logic-level (TO-220)
+      en: IRLZ44N logic-level MOSFET (TO-220)
+    qty: 5
+    category: Power chain
+    notes:
+      fr: Switching brush motor 12V depuis 3.3V GPIO
+      en: Switching 12V brush motor from 3.3V GPIO
+
+  - ref: buck-mp1584
+    sourcier_ref: ELE-027
+    name:
+      fr: Buck converter MP1584EN ajustable
+      en: MP1584EN adjustable buck converter
+    qty: 2
+    category: Power chain
+    notes:
+      fr: 5V depuis 12V batterie pour ESP32 et logique L298N
+      en: 5V from 12V battery for ESP32 and L298N logic
+
+  - ref: bms-3s
+    sourcier_ref: ELE-028
+    name: BMS 3S 25A 18650
+    qty: 1
+    category: Power chain
+    notes:
+      fr: Protection pack 18650 11.1V
+      en: 18650 pack protection 11.1V
+
+  # ── Moteurs traction ────────────────────────────────────────────
+  - ref: motor-n20
+    sourcier_ref: ELE-022
+    name:
+      fr: Moteur DC N20 200RPM 12V (×4)
+      en: N20 DC gear motor 200RPM 12V (×4)
+    qty: 4
+    category: Moteurs traction
+    notes:
+      fr: Récupérables d'imprimantes Canon/Epson démontées
+      en: Recoverable from disassembled Canon/Epson printers
+
+  # ── Brosse motrice ──────────────────────────────────────────────
+  - ref: brosse-nylon
+    sourcier_ref: MEC-034
+    name:
+      fr: Brosse nylon perceuse disque 50mm
+      en: Drill nylon brush disc 50mm
+    qty: 1
+    category: Brosse
+
+  # ── Connectique IMS ─────────────────────────────────────────────
+  - ref: xt60
+    sourcier_ref: CON-001
+    name:
+      fr: Connecteur XT60 paire
+      en: XT60 connector pair
+    qty: 5
+    unit: paire
+    category: Connectique
+
+  - ref: jst-xh-3p
+    sourcier_ref: CON-002
+    name: JST-XH 3pin connector
+    qty: 10
+    category: Connectique
+
+  - ref: dupont-kit
+    sourcier_ref: CON-003
+    name:
+      fr: Câbles Dupont kit (M-M, M-F, F-F)
+      en: Dupont jumper wires kit (M-M, M-F, F-F)
+    qty: 1
+    unit: kit
+    category: Connectique
+
+  # ── Visserie ────────────────────────────────────────────────────
+  - ref: vis-m3-kit
+    sourcier_ref: VIS-001
+    name:
+      fr: Kit vis M3 480 pcs
+      en: M3 screw assortment kit 480 pcs
+    qty: 1
+    unit: kit
+    category: Visserie
+
+  - ref: entretoises-m3
+    sourcier_ref: VIS-004
+    name:
+      fr: Kit entretoises M3 laiton
+      en: M3 brass standoffs kit
+    qty: 1
+    unit: kit
+    category: Visserie
+
+  # ── Étanchéité ──────────────────────────────────────────────────
+  - ref: presse-etoupe-pg7
+    sourcier_ref: MEC-035
+    name:
+      fr: Presse-étoupe PG7
+      en: PG7 cable gland
+    qty: 4
+    category: Étanchéité
+
+  # ── Prototypage ─────────────────────────────────────────────────
+  - ref: breadboard-830
+    name:
+      fr: Breadboard 830 points
+      en: 830-point breadboard
+    qty: 1
+    category: Prototypage
+    notes:
+      fr: Pour bench validation câblage avant montage final
+      en: For wiring validation bench before final assembly
