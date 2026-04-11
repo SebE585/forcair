@@ -47,7 +47,7 @@ The robot patrols your patio autonomously. When the camera detects green moss (c
 | Frame | Aluminum 2020 extrusion profiles |
 | Wheels | 4x 80mm (PETG hub + TPU tire), 4WD |
 | Brain | ESP32-CAM (camera + WiFi + GPIO) |
-| Motor driver | MX1508 dual H-bridge (1.5 A/ch, 4× PWM input) ×2 |
+| Motor driver | L298N dual H-bridge (2 A/ch, PWM + IN1/IN2) ×2 |
 | Brush | Rotary nylon or steel wire, 50mm, on Z-axis |
 | Battery | 3S 18650 pack (11.1V), ~1h15 autonomy |
 | Navigation | Bump & turn (Phase 1) → IMU dead reckoning (Phase 2) → GPS RTK (Phase 3) |
@@ -80,7 +80,7 @@ The BOM is organized in 5 supply lanes. Total target: **~140 EUR cash + ~50 EUR 
 | `MEC-001` | 608ZZ bearings | lot of 10 | Wheel hubs (4 used) | 4 EUR |
 | `MEC-010` | Rigid shaft couplers 5mm-8mm | 4 | Motor → wheel axle | 5 EUR |
 | `MEC-012` | Aluminum shaft collars 8mm | lot of 10 | Wheel axial retention | 3 EUR |
-| `ELE-014` | **MX1508** dual motor driver | 2 | 4 traction motors (2 ch each) | 2 EUR |
+| `ELE-010` | **L298N** dual motor driver | 2 | 4 traction motors (2 ch each) | 3 EUR |
 | `ELE-031` | Sharp GP2Y0A21 IR sensor | 2 | Front obstacle detection | 3 EUR |
 | `ELE-032` | TCRT5000 cliff sensor | 2 | Drop detection (stairs) | 1 EUR |
 | `ELE-033` | Micro-switch lever (snap-action) | 4 | Front bumpers + spares | 1 EUR |
@@ -164,11 +164,11 @@ The BOM is organized in 5 supply lanes. Total target: **~140 EUR cash + ~50 EUR 
 | **Total cash spent** | **~140-150 EUR** |
 | **Total saved by reclaiming** | **~50 EUR** |
 
-> **Note 2026-04-11** — first AliExpress shipment received and partially audited:
-> bearings ✅, M3 kit ✅, MX1508 ⚠ (3/6 received, 50% refund dispute opened),
-> SG90 ❌ (wrong variant ordered, re-order with `180° with limit` required).
-> The MX1508 chip replaces the design's original TB6612FNG — see
-> `hardware/design-v1.md` for the upcoming pinout patch (4× PWM inputs vs PWM+DIR).
+> **Note 2026-04-11** — first AliExpress shipment received and audited:
+> bearings ✅, M3 kit ✅, L298N ✅ (6 pcs received as an uncut PCB panel —
+> snap apart along the V-cut lines), SG90 ❌ (wrong variant ordered,
+> re-order with `180° with limit` required). L298N matches the original
+> v3 BOM and is compatible with the design's pinout (PWM + IN1/IN2 per channel).
 
 ### CAD Files
 
@@ -249,7 +249,7 @@ Phase 1-1.5 (ESP32-CAM only, ~75 EUR):
   └──┬───┬──┬───┘
      │   │  └──── 2x IR Sharp + 2x bumper + 2x cliff + buzzer
      │   └─────── SG90 servo (Z-axis)
-     └─────────── 2× MX1508 → 4× DC motors + IRLZ44N → brush motor
+     └─────────── 2× L298N → 4× DC motors + IRLZ44N → brush motor
 
 Phase 2 (+2 EUR): add MPU6050 IMU → systematic line sweep, 150m² coverage
 Phase 3 (+40 EUR): add u-blox F9P → GPS RTK via NTRIP, cm-level precision
