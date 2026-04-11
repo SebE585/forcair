@@ -47,7 +47,7 @@ The robot patrols your patio autonomously. When the camera detects green moss (c
 | Frame | Aluminum 2020 extrusion profiles |
 | Wheels | 4x 80mm (PETG hub + TPU tire), 4WD |
 | Brain | ESP32-CAM (camera + WiFi + GPIO) |
-| Motor driver | TB6612FNG (dual H-bridge, MOSFET) |
+| Motor driver | MX1508 dual H-bridge (1.5 A/ch, 4× PWM input) ×2 |
 | Brush | Rotary nylon or steel wire, 50mm, on Z-axis |
 | Battery | 3S 18650 pack (11.1V), ~1h15 autonomy |
 | Navigation | Bump & turn (Phase 1) → IMU dead reckoning (Phase 2) → GPS RTK (Phase 3) |
@@ -69,33 +69,106 @@ The robot patrols your patio autonomously. When the camera detects green moss (c
 
 ### Bill of Materials (BOM)
 
-> **Source all parts in one click:** [**Open BOM on Sourcier**](https://sourcier.shop/bom/forcair) — find validated AliExpress vendors for each component.
+> **Source all parts in one click:** [**Open BOM on Sourcier**](https://sourcier.shop/bom/forcair) — Sourcier finds validated AliExpress vendors for each component and groups them by seller to minimize shipping costs.
 
-| Part | Source | Cost |
-|------|--------|------|
-| 4x 2020 profiles (300+250mm) | Motedis or similar | ~8 EUR |
-| 4x corner brackets + T-nuts | Motedis | ~5 EUR |
-| Plywood platform 5mm | Hardware store | ~3 EUR |
-| 4x wheels (PETG hub + TPU tire) | 3D printed | ~4 EUR filament |
-| 4x 608ZZ bearings | AliExpress | ~3 EUR |
-| 4x shaft couplers | AliExpress | ~2 EUR |
-| 4x DC motors (traction) | Reclaimed from printers | 0 EUR* |
-| Brush motor (12V DC) | Reclaimed or ~5 EUR | 0-5 EUR |
-| Nylon brush (drill attachment) | Hardware store | ~5 EUR |
-| Steel wire brush (drill attachment) | Hardware store | ~5 EUR |
-| ESP32-CAM | AliExpress | ~5 EUR |
-| TB6612FNG motor driver | AliExpress | ~3 EUR |
-| 2x Sharp GP2Y0A21 IR sensors | AliExpress | ~2 EUR |
-| 2x micro-switch bumpers | AliExpress or reclaimed | ~1 EUR |
-| 2x TCRT5000 cliff sensors | AliExpress | ~0.50 EUR |
-| Piezo buzzer | AliExpress | ~0.30 EUR |
-| 3S 18650 battery pack | Reclaimed or ~15 EUR | 0-15 EUR |
-| SG90 servo (Z-axis) | AliExpress | ~2 EUR |
-| 3D printed parts (~21 pieces) | PETG + TPU filament | ~10 EUR |
-| Waterproofing (seals, grommets) | Hardware store | ~3 EUR |
-| **TOTAL** | | **~50-75 EUR** |
+The BOM is organized in 5 supply lanes. Total target: **~140 EUR cash + ~50 EUR saved by reclaiming parts**.
 
-*Reclaimed DC motors from old inkjet printers work great. Fallback: 4x N20 200RPM motors (~10 EUR on AliExpress).*
+#### A. AliExpress — electronics + small mechanical (~52 EUR)
+
+| Sourcier ref | Part | Qty | Use | ~Price |
+|---|---|---|---|---|
+| `MEC-001` | 608ZZ bearings | lot of 10 | Wheel hubs (4 used) | 4 EUR |
+| `MEC-010` | Rigid shaft couplers 5mm-8mm | 4 | Motor → wheel axle | 5 EUR |
+| `MEC-012` | Aluminum shaft collars 8mm | lot of 10 | Wheel axial retention | 3 EUR |
+| `ELE-014` | **MX1508** dual motor driver | 2 | 4 traction motors (2 ch each) | 2 EUR |
+| `ELE-031` | Sharp GP2Y0A21 IR sensor | 2 | Front obstacle detection | 3 EUR |
+| `ELE-032` | TCRT5000 cliff sensor | 2 | Drop detection (stairs) | 1 EUR |
+| `ELE-033` | Micro-switch lever (snap-action) | 4 | Front bumpers + spares | 1 EUR |
+| `ELE-040` | Passive piezo buzzer | 1 | Audio feedback | 1 EUR |
+| `ELE-021` | SG90 servo (180° **with limit**) | 3 | MOD-002 brush Z-axis + spares | 5 EUR |
+| `ELE-050` | MOSFET IRLZ44N (logic-level) | 5 | Brush motor switching | 3 EUR |
+| `ELE-051` | Buck MP1584EN adjustable | 2 | 5 V from 12 V battery | 2 EUR |
+| `ELE-060` | BMS 3S 25 A | 1 | 18650 pack protection | 2 EUR |
+| `ELE-030` | MPU6050 IMU | 1 | Phase 2 dead reckoning | 2 EUR |
+| `CON-001` | XT60 connector pairs | 5 | IMS power | 4 EUR |
+| `CON-002` | JST-XH 3-pin connectors | lot of 10 | IMS signal | 2 EUR |
+| `CON-003` | Dupont jumper kit (M-M / M-F / F-F) | 1 | Prototyping | 2 EUR |
+| `VIS-001` | M3 screw assortment kit (~480 pcs) | 1 | General fixation | 8 EUR |
+| `VIS-004` | M3 brass standoffs kit | 1 | PCB mounting | 5 EUR |
+| `ELE-070` | Breadboard 830 points (MB-102) | 1 | MX1508 + ESP32-CAM bench | 2 EUR |
+
+#### B. Motedis — aluminum extrusion (~25 EUR)
+
+| Part | Qty | ~Price |
+|---|---|---|
+| 2020 V-slot profile, 1 m | 5 | 18 EUR |
+| Corner brackets 2020 | 20 | 6 EUR |
+| M5 T-nuts (lot of 100) | 1 | 6 EUR |
+
+#### C. Bambu Lab Store — filament (~55 EUR)
+
+| Part | Qty | ~Price |
+|---|---|---|
+| **PETG HF Translucent Blue** (signature dome) | 1 kg | 25 EUR |
+| **TPU 95A HF Black** (tires + skirt + bumper) | 500 g | 18 EUR |
+| PETG HF Black (chassis parts, optional if in stock) | 1 kg | 12 EUR |
+
+#### D. Hardware store / Brico (~18 EUR)
+
+| Part | Qty | ~Price |
+|---|---|---|
+| 5 mm plywood platform | 1 | 3 EUR |
+| Nylon drill brush attachment | 1 | 5 EUR |
+| Steel wire drill brush attachment | 1 | 5 EUR |
+| PG7 cable glands | 4 | 3 EUR |
+| Adhesive foam strip (sealing) | 1 | 2 EUR |
+
+#### E. Reclaimed from junk — FREE
+
+| Part | Source | Notes |
+|---|---|---|
+| 4× DC traction motors | Old inkjet printers | Canon MG6450, Epson XP-2150 |
+| ESP32-CAM | Stock | Phase 1 brain |
+| RPi Zero 2W | Stock | Phase 2 vision |
+| GoPro Hero 3+ | Stock | Phase 2 mapping |
+| 8 mm linear rods (Z-axis) | Old printers | 2× recovered |
+| 12 V brush motor | Reclaimed vacuum (Telsa 80) | or ~5 EUR if no donor |
+| 3S 18650 battery pack | Reclaimed Ryobi 36V | or ~15 EUR new pack |
+| Springs (Z-axis return) | Old printers | Multiple |
+
+#### F. 3D printed — free (you supply filament from C)
+
+| Part | Material | Print time | Notes |
+|---|---|---|---|
+| 4× wheel hubs | PETG black | ~1 h each | 608ZZ housing |
+| 4× tires | TPU 95A black | ~45 min each | Striped tread |
+| 4× motor mounts | PETG black | ~30 min each | 2020 cradle |
+| Brush Z-axis carriage | PETG black | ~2 h | IMS-002 |
+| 2× linear bearings | PETG black | ~15 min each | 8 mm rods |
+| **Dome cover** | **PETG translucent blue** | ~3 h | The signature shell, PCBs visible through |
+| ESP32-CAM mount | PETG black | ~15 min | + tilt adjustment |
+| Brush confinement skirt | TPU 95A black | ~45 min | Soft seal under chassis |
+| Front bumper | TPU 95A black | ~30 min | Integrates micro-switches |
+| IR sensor mount (front) | PETG black | ~15 min | |
+| 2× cliff sensor mounts | PETG black | ~10 min each | |
+
+### Total budget
+
+| Source | Cash |
+|---|---|
+| AliExpress (electronics + mechanical) | ~52 EUR |
+| Motedis (extrusion) | ~25 EUR |
+| Bambu Lab (filament) | ~45-55 EUR |
+| Brico (plywood, brushes, sealing) | ~18 EUR |
+| Reclaimed parts | 0 EUR |
+| **Total cash spent** | **~140-150 EUR** |
+| **Total saved by reclaiming** | **~50 EUR** |
+
+> **Note 2026-04-11** — first AliExpress shipment received and partially audited:
+> bearings ✅, M3 kit ✅, MX1508 ⚠ (3/6 received, 50% refund dispute opened),
+> SG90 ❌ (wrong variant ordered, re-order with `180° with limit` required).
+> The MX1508 chip replaces the design's original TB6612FNG — see
+> `hardware/design-v1.md` for the upcoming pinout patch (4× PWM inputs vs PWM+DIR).
 
 ### CAD Files
 
@@ -176,7 +249,7 @@ Phase 1-1.5 (ESP32-CAM only, ~75 EUR):
   └──┬───┬──┬───┘
      │   │  └──── 2x IR Sharp + 2x bumper + 2x cliff + buzzer
      │   └─────── SG90 servo (Z-axis)
-     └─────────── TB6612FNG → 4x DC motors + brush motor (MOSFET)
+     └─────────── 2× MX1508 → 4× DC motors + IRLZ44N → brush motor
 
 Phase 2 (+2 EUR): add MPU6050 IMU → systematic line sweep, 150m² coverage
 Phase 3 (+40 EUR): add u-blox F9P → GPS RTK via NTRIP, cm-level precision
