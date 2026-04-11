@@ -6,7 +6,7 @@
 
 Forcair is a low-cost, open-source autonomous robot that removes moss and weeds from paved surfaces using a rotating brush and computer vision.
 
-Built with aluminum extrusion profiles, 3D printed parts, and an ESP32-CAM. Under 1.3 kg. Under 100 EUR.
+Built with aluminum extrusion profiles, 3D printed parts, and an ESP32-CAM. Under 1.3 kg. ~150 EUR from scratch (or ~75 EUR if you reclaim motors + battery + brush motor from junk).
 
 > Named after a vehicle from [*Jayce and the Wheeled Warriors*](https://en.wikipedia.org/wiki/Jayce_and_the_Wheeled_Warriors) (1985).
 
@@ -24,7 +24,7 @@ Interlocking pavers and stone patios accumulate **moss and weeds** in their join
 | Pressure washer | 200+ EUR | Heavy, damages joints | Wastes water |
 | Chemical herbicide | 10 EUR/year | Easy | **No** |
 | Commercial robot mower | 1000+ EUR | N/A on pavers | N/A |
-| **Forcair** | **~75 EUR** | **Autonomous** | **Yes** |
+| **Forcair** | **~150 EUR** (or ~75 EUR with reclaimed parts) | **Autonomous** | **Yes** |
 
 ## How It Works
 
@@ -53,7 +53,7 @@ The robot patrols your patio autonomously. When the camera detects green moss (c
 | Navigation | Bump & turn (Phase 1) → IMU dead reckoning (Phase 2) → GPS RTK (Phase 3) |
 | Detection | HSV green-on-gray thresholding (inspired by [OWL](https://github.com/geezacoleman/OpenWeedLocator)) |
 | Manufacturing | 3D printing (Bambu Lab X1C) + off-the-shelf parts |
-| **Total cost** | **~75 EUR** (including shared hardware order) |
+| **Total cost** | **~150 EUR** from scratch, all-in (or ~75 EUR if you reclaim motors + battery + brush motor) — see [live BOM widget](https://sourcier.shop/bom/SebE585/forcair) |
 
 ## Project Status
 
@@ -209,7 +209,7 @@ Design your own module! The IMS plate CAD file is in `hardware/cad/ims_plate.py`
 ## Architecture
 
 ```
-Phase 1-1.5 (ESP32-CAM only, ~75 EUR):
+Phase 1-1.5 (ESP32-CAM only, ~150 EUR from scratch / ~75 EUR with reclaimed parts):
 
   ┌─────────────┐    WiFi     ┌──────────────┐
   │  ESP32-CAM  │◄───────────►│   Smartphone  │
