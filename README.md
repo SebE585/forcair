@@ -161,14 +161,19 @@ hardware/cad/
 
 ### Printing Guide
 
-| Part | Material | Infill | Layer | Time |
-|------|----------|--------|-------|------|
-| Wheel hubs (x4) | PETG | 100% | 0.2mm | ~1h each |
-| Tires (x4) | TPU 95A | 100% | 0.2mm | ~45min each |
-| Motor mounts (x4) | PETG | 80% | 0.2mm | ~30min each |
-| Dome cover | PETG (translucent blue) | 20% | 0.2mm | ~3h |
-| All other parts | PETG | 50% | 0.2mm | varies |
-| **Total Phase 1** | | | | **~12-13h** |
+| Part | Material | Infill | Pattern | Perimeters | Layer | Time |
+|------|----------|--------|---------|------------|-------|------|
+| Wheel hubs (x4) | PETG | 40% | gyroid | 4 | 0.2mm | ~45min each |
+| Tires (x4) | TPU 95A | 20% | gyroid | 3 | 0.2mm | ~40min each |
+| Motor mounts (x4) | PETG | 40% | gyroid | 4 | 0.2mm | ~25min each |
+| Dome cover | PETG (translucent blue) | 15% | gyroid | 3 | 0.2mm | ~3h |
+| All other parts | PETG | 30-40% | gyroid | 3 | 0.2mm | varies |
+| **Total Phase 1** | | | | | | **~10-11h** |
+
+**Why not 100% infill on wheels and tires?**
+
+- **Wheel hubs (PETG, 40% gyroid)** — for a 1.3 kg robot (~330 g per wheel), radial and torsional loads are carried by the perimeters, not the infill. 4 walls + 40% gyroid is plenty; 100% just wastes filament and print time without measurable benefit.
+- **Tires (TPU 95A, 20% gyroid)** — the whole point of TPU is compliance (grip + shock absorption). Printing TPU at 100% gives a *rigid* rubber tire with no give, which actively defeats the purpose: less grip on uneven pavers, more vibration into the chassis. 15-25% gyroid keeps the tire deformable enough to conform to joints while staying durable.
 
 ## Research & State of the Art
 
