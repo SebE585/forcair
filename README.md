@@ -69,61 +69,30 @@ The robot patrols your patio autonomously. When the camera detects green moss (c
 
 ### Bill of Materials (BOM)
 
-> **Source all parts in one click:** [**Open BOM on Sourcier**](https://sourcier.shop/bom/forcair) — Sourcier finds validated AliExpress vendors for each component and groups them by seller to minimize shipping costs.
+The BOM is maintained as a machine-readable [`BOM.yaml`](BOM.yaml) at the root of this repo
+and consumed by [sourcier.shop](https://sourcier.shop) to generate a live, always-up-to-date
+sourcing widget with vendor links optimized per country.
 
-The BOM is organized in 5 supply lanes. Total target: **~140 EUR cash + ~50 EUR saved by reclaiming parts**.
+> 🛒 **Live BOM widget:** [**sourcier.shop/bom/SebE585/forcair**](https://sourcier.shop/bom/SebE585/forcair)
+>
+> One click to see all 27 components, vendor matches (Motedis, AliExpress, Leroy Merlin…),
+> per-line and total estimated cost, with country-aware vendor selection (FR/DE/UK/US).
+> Supports `?lang=fr|en` for multilingual descriptions.
 
-#### A. AliExpress — electronics + small mechanical (~52 EUR)
+The BOM is organized in 5 supply lanes:
 
-| Sourcier ref | Part | Qty | Use | ~Price |
-|---|---|---|---|---|
-| `MEC-001` | 608ZZ bearings | lot of 10 | Wheel hubs (4 used) | 4 EUR |
-| `MEC-010` | Rigid shaft couplers 5mm-8mm | 4 | Motor → wheel axle | 5 EUR |
-| `MEC-012` | Aluminum shaft collars 8mm | lot of 10 | Wheel axial retention | 3 EUR |
-| `ELE-010` | **L298N** dual motor driver | 2 | 4 traction motors (2 ch each) | 3 EUR |
-| `ELE-031` | Sharp GP2Y0A21 IR sensor | 2 | Front obstacle detection | 3 EUR |
-| `ELE-032` | TCRT5000 cliff sensor | 2 | Drop detection (stairs) | 1 EUR |
-| `ELE-033` | Micro-switch lever (snap-action) | 4 | Front bumpers + spares | 1 EUR |
-| `ELE-040` | Passive piezo buzzer | 1 | Audio feedback | 1 EUR |
-| `ELE-021` | SG90 servo (180° **with limit**) | 3 | MOD-002 brush Z-axis + spares | 5 EUR |
-| `ELE-050` | MOSFET IRLZ44N (logic-level) | 5 | Brush motor switching | 3 EUR |
-| `ELE-051` | Buck MP1584EN adjustable | 2 | 5 V from 12 V battery | 2 EUR |
-| `ELE-060` | BMS 3S 25 A | 1 | 18650 pack protection | 2 EUR |
-| `ELE-030` | MPU6050 IMU | 1 | Phase 2 dead reckoning | 2 EUR |
-| `CON-001` | XT60 connector pairs | 5 | IMS power | 4 EUR |
-| `CON-002` | JST-XH 3-pin connectors | lot of 10 | IMS signal | 2 EUR |
-| `CON-003` | Dupont jumper kit (M-M / M-F / F-F) | 1 | Prototyping | 2 EUR |
-| `VIS-001` | M3 screw assortment kit (~480 pcs) | 1 | General fixation | 8 EUR |
-| `VIS-004` | M3 brass standoffs kit | 1 | PCB mounting | 5 EUR |
-| `ELE-070` | Breadboard 830 points (MB-102) | 1 | MX1508 + ESP32-CAM bench | 2 EUR |
+- **A — AliExpress**: electronics + small mechanical hardware (bearings, drivers, sensors, connectors, screws)
+- **B — Motedis**: aluminum 2020 extrusion (custom-cut profiles, corner brackets, T-nuts)
+- **C — Bambu Lab Store**: filament (PETG translucent blue dome + TPU 95A tires + PETG black chassis)
+- **D — Hardware store / Brico**: plywood platform, drill brushes, PG7 cable glands, foam seals
+- **E — Reclaimed from junk**: see table below — these items are not in the public BOM since they
+  depend on what donors you can find locally
 
-#### B. Motedis — aluminum extrusion (~25 EUR)
+Need to add a vendor or update a price? Edit [`BOM.yaml`](BOM.yaml) and Sourcier will pick it up
+within 1 hour (cache TTL). The BOM.yaml format spec is documented at
+[sourcier.shop/spec/bom-yaml](https://sourcier.shop/spec/bom-yaml).
 
-| Part | Qty | ~Price |
-|---|---|---|
-| 2020 V-slot profile, 1 m | 5 | 18 EUR |
-| Corner brackets 2020 | 20 | 6 EUR |
-| M5 T-nuts (lot of 100) | 1 | 6 EUR |
-
-#### C. Bambu Lab Store — filament (~55 EUR)
-
-| Part | Qty | ~Price |
-|---|---|---|
-| **PETG HF Translucent Blue** (signature dome) | 1 kg | 25 EUR |
-| **TPU 95A HF Black** (tires + skirt + bumper) | 500 g | 18 EUR |
-| PETG HF Black (chassis parts, optional if in stock) | 1 kg | 12 EUR |
-
-#### D. Hardware store / Brico (~18 EUR)
-
-| Part | Qty | ~Price |
-|---|---|---|
-| 5 mm plywood platform | 1 | 3 EUR |
-| Nylon drill brush attachment | 1 | 5 EUR |
-| Steel wire drill brush attachment | 1 | 5 EUR |
-| PG7 cable glands | 4 | 3 EUR |
-| Adhesive foam strip (sealing) | 1 | 2 EUR |
-
-#### E. Reclaimed from junk — FREE
+#### Reclaimed from junk — project-specific (not in BOM.yaml)
 
 | Part | Source | Notes |
 |---|---|---|
@@ -136,7 +105,7 @@ The BOM is organized in 5 supply lanes. Total target: **~140 EUR cash + ~50 EUR 
 | 3S 18650 battery pack | Reclaimed Ryobi 36V | or ~15 EUR new pack |
 | Springs (Z-axis return) | Old printers | Multiple |
 
-#### F. 3D printed — free (you supply filament from C)
+#### 3D printed parts — free (you supply filament from supply lane C)
 
 | Part | Material | Print time | Notes |
 |---|---|---|---|
@@ -152,23 +121,24 @@ The BOM is organized in 5 supply lanes. Total target: **~140 EUR cash + ~50 EUR 
 | IR sensor mount (front) | PETG black | ~15 min | |
 | 2× cliff sensor mounts | PETG black | ~10 min each | |
 
-### Total budget
+### Total budget (Phase 1.5 functional)
 
-| Source | Cash |
+| Lane | Cash |
 |---|---|
-| AliExpress (electronics + mechanical) | ~52 EUR |
-| Motedis (extrusion) | ~25 EUR |
-| Bambu Lab (filament) | ~45-55 EUR |
-| Brico (plywood, brushes, sealing) | ~18 EUR |
-| Reclaimed parts | 0 EUR |
-| **Total cash spent** | **~140-150 EUR** |
-| **Total saved by reclaiming** | **~50 EUR** |
+| A — AliExpress (electronics + mechanical) | ~55 EUR |
+| B — Motedis (custom-cut extrusion) | ~20 EUR |
+| C — Bambu Lab (filament dedicated to Forcair) | ~30 EUR |
+| D — Brico (plywood, brushes, seals, PG7) | ~18 EUR |
+| E — Reclaimed parts | 0 EUR |
+| Shipping & misc | ~10 EUR |
+| **Total cash, all-in** | **~135-155 EUR** |
+| Total saved by reclaiming (vs new) | ~50 EUR |
 
-> **Note 2026-04-11** — first AliExpress shipment received and audited:
-> bearings ✅, M3 kit ✅, L298N ✅ (6 pcs received as an uncut PCB panel —
-> snap apart along the V-cut lines), SG90 ❌ (wrong variant ordered,
-> re-order with `180° with limit` required). L298N matches the original
-> v3 BOM and is compatible with the design's pinout (PWM + IN1/IN2 per channel).
+The original "<75 EUR" target on the project banner refers to the bare-minimum Phase 1
+electronics-only build assuming all reclaimable parts are available (motors, battery, brush motor,
+linear rods). Real-world cost for a from-scratch build sits closer to **~150 EUR** including
+filament and shipping. See the live [Sourcier widget](https://sourcier.shop/bom/SebE585/forcair)
+for the up-to-date estimate based on current vendor prices.
 
 ### CAD Files
 
