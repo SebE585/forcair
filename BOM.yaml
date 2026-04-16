@@ -225,6 +225,17 @@ items:
     qty: 1
     category: Brosse
 
+  - ref: moteur-brosse-dc
+    sourcier_ref: ELE-042
+    name:
+      fr: Moteur DC 12V brush (brosse rotative)
+      en: 12V DC brush motor (rotary brush)
+    qty: 1
+    category: Brosse
+    notes:
+      fr: "Moteur d'entraînement brosse (distinct des N20 traction). Récupérable d'aspirateur/perceuse HS OU achat AliExpress ~5€."
+      en: "Brush drive motor (distinct from N20 traction). Salvageable from dead vacuum/drill OR buy on AliExpress ~5€."
+
   # ── Connectique IMS ─────────────────────────────────────────────
   - ref: xt60
     sourcier_ref: CON-001
@@ -280,6 +291,7 @@ items:
 
   # ── Cerveau Phase 2 ──────────────────────────────────────────────
   - ref: rpi-zero2
+    sourcier_ref: ELE-040
     name:
       fr: Raspberry Pi Zero 2 WH (avec headers soudés)
       en: Raspberry Pi Zero 2 WH (pre-soldered headers)
@@ -290,6 +302,7 @@ items:
       en: Phase 2 brain (replaces ESP32-CAM when Python/ROS needed). Kubii FR or Pimoroni.
 
   - ref: microsd-8gb
+    sourcier_ref: ELE-041
     name:
       fr: Carte microSD 8-16GB classe 10
       en: MicroSD card 8-16GB class 10
@@ -301,6 +314,7 @@ items:
 
   # ── Structure ──────────────────────────────────────────────────
   - ref: plateau-cp
+    sourcier_ref: MAT-001
     name:
       fr: Contreplaqué 5mm 280×230mm
       en: 5mm plywood 280×230mm
@@ -311,6 +325,7 @@ items:
       en: Base plate. Cut at hardware store or with jigsaw.
 
   - ref: joints-mousse
+    sourcier_ref: MAT-002
     name:
       fr: Joints mousse adhésive (rouleau)
       en: Adhesive foam tape (roll)
@@ -328,6 +343,7 @@ items:
   # les liens AliExpress sont fournis comme alternative d'achat.
 
   - ref: tiges-lisses-8mm
+    sourcier_ref: MEC-040
     name:
       fr: Tiges lisses chromées 8mm × 2 (longueur 200-300mm)
       en: 8mm chromed smooth rods × 2 (length 200-300mm)
@@ -348,6 +364,7 @@ items:
   # Ajuster selon vos STL, paramètres slicer et taux de remplissage.
 
   - ref: filament-petg-noir
+    sourcier_ref: FIL-001
     name:
       fr: Filament PETG Noir 1.75mm (estimé ~270g consommés)
       en: PETG Black filament 1.75mm (estimated ~270g used)
@@ -359,6 +376,7 @@ items:
       en: "Wheel hubs ×4 (~160g) + motor mounts ×4 (~80g) + sensor brackets (~30g). Ratio: 270g / 1000g × 16.99€ ≈ 4.59€"
 
   - ref: filament-petg-bleu
+    sourcier_ref: FIL-002
     name:
       fr: Filament PETG Translucide Bleu 1.75mm (estimé ~100g)
       en: PETG Translucent Blue filament 1.75mm (estimated ~100g)
@@ -370,6 +388,7 @@ items:
       en: "Forcair dome hood (~100g, ~3h print). Ratio: 100g / 1000g × 18.99€ ≈ 1.90€. Color optional — black PETG works too."
 
   - ref: filament-tpu-noir
+    sourcier_ref: FIL-003
     name:
       fr: Filament TPU 95A Noir 1.75mm (estimé ~160g)
       en: TPU 95A Black filament 1.75mm (estimated ~160g)
@@ -382,6 +401,7 @@ items:
 
   # ── Prototypage ─────────────────────────────────────────────────
   - ref: breadboard-830
+    sourcier_ref: ELE-031
     name:
       fr: Breadboard 830 points
       en: 830-point breadboard
