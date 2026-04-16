@@ -13,8 +13,8 @@ description:
   en: Open hardware autonomous paver weeding robot
 url: https://github.com/SebE585/forcair
 license: CERN-OHL-S-2.0
-budget_target_eur: 75
-budget_realistic_eur: 150
+budget_target_eur: 100
+budget_realistic_eur: 180
 lifecycle: phase_1_achat
 
 items:
@@ -277,6 +277,108 @@ items:
       en: PG7 cable gland
     qty: 4
     category: Étanchéité
+
+  # ── Cerveau Phase 2 ──────────────────────────────────────────────
+  - ref: rpi-zero2
+    name:
+      fr: Raspberry Pi Zero 2 WH (avec headers soudés)
+      en: Raspberry Pi Zero 2 WH (pre-soldered headers)
+    qty: 1
+    category: Cerveau
+    notes:
+      fr: Brain Phase 2 (remplace ESP32-CAM quand besoin de Python/ROS). Kubii FR ou Pimoroni.
+      en: Phase 2 brain (replaces ESP32-CAM when Python/ROS needed). Kubii FR or Pimoroni.
+
+  - ref: microsd-8gb
+    name:
+      fr: Carte microSD 8-16GB classe 10
+      en: MicroSD card 8-16GB class 10
+    qty: 1
+    category: Cerveau
+    notes:
+      fr: Pour RPi Zero ou ESP32-CAM. Récupérable d'un ancien appareil.
+      en: For RPi Zero or ESP32-CAM. Can be salvaged from old devices.
+
+  # ── Structure ──────────────────────────────────────────────────
+  - ref: plateau-cp
+    name:
+      fr: Contreplaqué 5mm 280×230mm
+      en: 5mm plywood 280×230mm
+    qty: 1
+    category: Structure
+    notes:
+      fr: Plateau de base. Découpe en magasin brico ou scie sauteuse.
+      en: Base plate. Cut at hardware store or with jigsaw.
+
+  - ref: joints-mousse
+    name:
+      fr: Joints mousse adhésive (rouleau)
+      en: Adhesive foam tape (roll)
+    qty: 1
+    unit: rouleau
+    category: Étanchéité
+    notes:
+      fr: Joint capot-chassis anti-poussière/eau
+      en: Hood-chassis dust/water seal
+
+  # ── Récup ou achat ─────────────────────────────────────────────
+  #
+  # Ces pièces sont couramment récupérables d'imprimantes, scanners,
+  # ou lecteurs DVD hors service. Si vous n'avez pas de source récup,
+  # les liens AliExpress sont fournis comme alternative d'achat.
+
+  - ref: tiges-lisses-8mm
+    name:
+      fr: Tiges lisses chromées 8mm × 2 (longueur 200-300mm)
+      en: 8mm chromed smooth rods × 2 (length 200-300mm)
+    qty: 2
+    category: Mécanique - Guidage
+    notes:
+      fr: "Récup imprimantes jet d'encre (axe chariot) OU achat AliExpress ~3€ la paire. Guidage axe Z brosse."
+      en: "Salvage from inkjet printers (carriage axis) OR buy on AliExpress ~3€/pair. Z-axis brush guide."
+
+  # ── Filament 3D (estimé au ratio poids) ────────────────────────
+  #
+  # Un maker qui reproduit Forcair n'a pas besoin d'acheter 3 bobines
+  # complètes (~60€). Estimation du filament réellement consommé par
+  # les pièces imprimées, basée sur les temps d'impression observés
+  # et un ratio moyen de ~30g/heure en PETG, ~20g/heure en TPU.
+  #
+  # Prix calculés au ratio : (poids_estimé / 1000g) × prix_bobine.
+  # Ajuster selon vos STL, paramètres slicer et taux de remplissage.
+
+  - ref: filament-petg-noir
+    name:
+      fr: Filament PETG Noir 1.75mm (estimé ~270g consommés)
+      en: PETG Black filament 1.75mm (estimated ~270g used)
+    qty: 270
+    unit: g
+    category: Filament 3D
+    notes:
+      fr: "Hubs roue ×4 (~160g, 4×1h) + supports moteur ×4 (~80g, 4×30min) + supports capteurs (~30g). Ratio : 270g / 1000g × 16.99€ ≈ 4.59€"
+      en: "Wheel hubs ×4 (~160g) + motor mounts ×4 (~80g) + sensor brackets (~30g). Ratio: 270g / 1000g × 16.99€ ≈ 4.59€"
+
+  - ref: filament-petg-bleu
+    name:
+      fr: Filament PETG Translucide Bleu 1.75mm (estimé ~100g)
+      en: PETG Translucent Blue filament 1.75mm (estimated ~100g)
+    qty: 100
+    unit: g
+    category: Filament 3D
+    notes:
+      fr: "Capot dôme Forcair (~100g, ~3h impression). Ratio : 100g / 1000g × 18.99€ ≈ 1.90€. Couleur optionnelle — PETG noir fonctionne aussi."
+      en: "Forcair dome hood (~100g, ~3h print). Ratio: 100g / 1000g × 18.99€ ≈ 1.90€. Color optional — black PETG works too."
+
+  - ref: filament-tpu-noir
+    name:
+      fr: Filament TPU 95A Noir 1.75mm (estimé ~160g)
+      en: TPU 95A Black filament 1.75mm (estimated ~160g)
+    qty: 160
+    unit: g
+    category: Filament 3D
+    notes:
+      fr: "Pneus ×4 (~100g, 4×45min) + jupe flexible (~60g, ~1h). Ratio : 160g / 1000g × 23.99€ ≈ 3.84€. Nécessite extrudeur direct-drive."
+      en: "Tires ×4 (~100g) + flexible skirt (~60g). Ratio: 160g / 1000g × 23.99€ ≈ 3.84€. Requires direct-drive extruder."
 
   # ── Prototypage ─────────────────────────────────────────────────
   - ref: breadboard-830
