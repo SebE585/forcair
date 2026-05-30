@@ -342,16 +342,27 @@ items:
   # ou lecteurs DVD hors service. Si vous n'avez pas de source récup,
   # les liens AliExpress sont fournis comme alternative d'achat.
 
-  - ref: tiges-lisses-8mm
+  - ref: tiges-guide-z
     sourcier_ref: MEC-040
     name:
-      fr: Tiges lisses chromées 8mm × 2 (longueur 200-300mm)
-      en: 8mm chromed smooth rods × 2 (length 200-300mm)
+      fr: Tiges lisses chromées guide Z brosse (Ø6 OU Ø8, longueur 80-120mm)
+      en: Chromed smooth rods Z-axis brush guide (Ø6 OR Ø8, length 80-120mm)
     qty: 2
     category: Mécanique - Guidage
     notes:
-      fr: "Récup imprimantes jet d'encre (axe chariot) OU achat AliExpress ~3€ la paire. Guidage axe Z brosse."
-      en: "Salvage from inkjet printers (carriage axis) OR buy on AliExpress ~3€/pair. Z-axis brush guide."
+      fr: "Course Z ~20-25mm + chariot + fixations → longueur utile 80-120mm (pas 200-300mm, la hauteur châssis ne fait que 100mm). Ø6 ou Ø8 interchangeables : les paliers sont imprimés 3D PETG paramétriques. Récup imprimante jet d'encre (axe chariot coupé) OU AliExpress ~8€ la paire Ø8 × 300mm (exemple : item 1005009347568195)."
+      en: "Z travel ~20-25mm + carriage + mounts → useful length 80-120mm (NOT 200-300mm, chassis height is only 100mm). Ø6 or Ø8 interchangeable: linear bearings are parametric 3D-printed PETG. Salvage inkjet carriage rod (cut to length) OR AliExpress ~8€ per pair Ø8 × 300mm (example: item 1005009347568195)."
+
+  - ref: axes-roue-8mm
+    sourcier_ref: MEC-041
+    name:
+      fr: Axes roue Ø8mm courts ×4 (longueur ~60mm)
+      en: Wheel axles Ø8mm short ×4 (length ~60mm)
+    qty: 4
+    category: Mécanique - Guidage
+    notes:
+      fr: "Traverse le roulement 608ZZ (ID 8mm) + coupleur 5→8 vers moteur N20. 1 tige Ø8 récup imprimante (~300mm) = 4 segments de 60mm OK. Ø8 obligatoire (imposé par 608ZZ)."
+      en: "Goes through 608ZZ bearing (8mm ID) + 5→8 coupler to N20 motor. 1 salvaged Ø8 printer rod (~300mm) = 4 segments of 60mm OK. Ø8 mandatory (imposed by 608ZZ)."
 
   # ── Filament 3D (estimé au ratio poids) ────────────────────────
   #

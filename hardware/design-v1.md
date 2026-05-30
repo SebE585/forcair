@@ -1,8 +1,8 @@
-# Forcair - Design Chassis v1.1
+# Forcair - Design Chassis v1.2
 
 > Plateforme robotique modulaire d'exterieur pour entretien des paves.
-> Version : v1.1 - 2026-04-03 (mise a jour post etat de l'art)
-> Version precedente : v1 - 2026-03-29
+> Version : v1.2 - 2026-04-17 (guides Z flex Ø6/Ø8 + axes roue explicites)
+> Version precedente : v1.1 - 2026-04-03
 > Image concept : `../specs/concept-forcair-v1.jpg`
 > Etat de l'art : `../research/state-of-the-art.md`
 
@@ -293,8 +293,14 @@ Chaque roue est entrainee par un moteur DC recup.
 - Conception parametrique (CadQuery) : adaptable a chaque moteur
 
 **Transmission moteur → roue :**
-- Coupleur d'arbre rigide (axe moteur → axe 8mm roulement 608)
+- Coupleur d'arbre rigide (axe moteur Ø5 → axe roue Ø8 qui traverse le 608ZZ)
 - Ou impression 3D d'un engrenage si reduction necessaire
+
+**Axes roue (BOM explicite) :**
+
+| Piece | Quantite | Spec | Source |
+|-------|----------|------|--------|
+| Axes roue | 4 | **Ø8mm, longueur ~60mm** (obligatoire Ø8 : impose par ID 608ZZ) | 1 tige recup imprimante Ø8 de ~300mm coupee en 4 segments |
 
 ## 5. Systeme modulaire (actionneur)
 
@@ -360,7 +366,7 @@ La brosse doit pouvoir :
 
      ═══════ plateau ═══════
          │             │
-    tige lisse     tige lisse    ← recup Canon/Epson (diam 8mm)
+    tige lisse     tige lisse    ← recup imprimante (Ø6 ou Ø8, L=80-120mm)
          │             │
      ┌───┴─────────────┴───┐
      │   chariot mobile     │    ← palier imprime 3D (ou LM8UU)
@@ -381,10 +387,12 @@ La brosse doit pouvoir :
 
 | Piece | Source | Notes |
 |-------|--------|-------|
-| 2x tiges lisses diam 8mm | Recup Canon MG6450 / Epson XP-2150 | Guides chariot imprimante |
-| 2x paliers lineaires | Imprimes 3D (PETG) ou LM8UU recup | Glissement sur tiges |
+| 2x tiges lisses Ø6 ou Ø8 | Recup imprimante (chariot coupe) ou AliExpress | **Longueur 80-120mm** (pas 200-300mm : hauteur chassis = 100mm) |
+| 2x paliers lineaires | Imprimes 3D PETG **parametriques** (diametre en variable) ou LM6UU/LM8UU recup | Glissement sur tiges. Le script CAD prend le Ø en parametre. |
 | 1x ressort de rappel | Recup imprimante | Position haute par defaut |
 | Course Z | ~20-25mm | Suffisant pour atteindre fond joint |
+
+**Choix Ø6 vs Ø8 :** pas de contrainte mecanique sur 20-25mm de course. Ø6 preferable si tu as stock recup en Ø6 (frequent sur imprimantes jet d'encre). Ø8 si deja dispo. Ø8 est **obligatoire cote roues** (roulement 608ZZ impose l'ID 8mm).
 
 **Actionnement Z :**
 - **Phase 1 (simple)** : servo SG90 + came (5 EUR si achat)
